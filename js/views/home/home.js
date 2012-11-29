@@ -9,7 +9,6 @@ define(['jquery', 'order!underscore', 'backbone', 'views/episodes/list', 'text!t
       this.template = _.template(mainTemplate);
     },
     render: function() {
-      console.log('mainrenter');
 
       $(this.el).html(this.template());
 
@@ -18,8 +17,7 @@ define(['jquery', 'order!underscore', 'backbone', 'views/episodes/list', 'text!t
         el: $('#lower'),
         model: 'dayofpodcasting'
       });
-
-     // events.render();
+      events.render();
 
       $('.nav li').removeClass('active');
       $('#home').addClass('active');
