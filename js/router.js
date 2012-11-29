@@ -34,12 +34,21 @@ define(['jquery', 'underscore', 'backbone', 'views/home/home','views/home/submit
     },
     show2012: function(){
       this.showYear('dayofpodcasting');
+
+            $('.nav li').removeClass('active');
+      $('#2012').addClass('active');
     },
     show2011: function(){
       this.showYear('dayofpodcasting2011');
+
+            $('.nav li').removeClass('active');
+      $('#2011').addClass('active');
     },
     show2010: function(){
       this.showYear('dayofpodcasting2010');
+
+            $('.nav li').removeClass('active');
+      $('#2010').addClass('active');
     },
     showYear: function(year){
       var view = new listView({
