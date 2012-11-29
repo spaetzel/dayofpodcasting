@@ -2,12 +2,16 @@ var router;
 
 
 // Filename: router.js
-define(['jquery', 'underscore', 'backbone', 'views/home/home','views/home/submit', 'views/home/links'], function($, _, Backbone, mainHomeView, submitView,linksView) {
+define(['jquery', 'underscore', 'backbone', 'views/home/home','views/home/submit', 'views/home/links',
+  'views/episodes/list'], function($, _, Backbone, mainHomeView, submitView,linksView, listView) {
   var AppRouter = Backbone.Router.extend({
     routes: {
       'home': 'defaultAction',
       'submit': 'showSubmit',
       'links': 'showLinks',
+      '2012': 'show2012',
+      '2011': 'show2011',
+      '2010': 'show2010',    
       // Default
       '*actions': 'defaultAction'
     },
@@ -20,13 +24,29 @@ define(['jquery', 'underscore', 'backbone', 'views/home/home','views/home/submit
 
     },
     showSubmit: function(){
-      console.log('submit');
+
       var contribute = new submitView();
       contribute.render();
     },
     showLinks: function(){
       var links = new linksView();
       links.render();
+    },
+    show2012: function(){
+      this.showYear('dayofpodcasting');
+    },
+    show2011: function(){
+      this.showYear('dayofpodcasting2011');
+    },
+    show2010: function(){
+      this.showYear('dayofpodcasting2010');
+    },
+    showYear: function(year){
+      var view = new listView({
+        el: $('#bodyArea'),
+        model: year
+      });
+      view.render();
     }
   });
 

@@ -16,7 +16,7 @@ define(['jquery', 'order!underscore', 'backbone', 'views/episodes/list', 'text!t
 
       var events = new episodesList({
         el: $('#lower'),
-        year: 2012
+        model: 'dayofpodcasting'
       });
 
      // events.render();
