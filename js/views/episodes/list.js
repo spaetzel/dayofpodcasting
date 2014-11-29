@@ -11,19 +11,36 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/episodes/list.html'
 
       var channelFeed = 'http://castroller.com/channels/' + this.model + '/feed';
 
-      var pipeFeed = 'http://pipes.yahoo.com/pipes/pipe.run?_id=ac7312a04d938c8e42ea66e39762fef5&_render=json&feed=' + escape( channelFeed);
-
-      $.get(pipeFeed, function(data){
-      	var items = data.value.items;
-
-      	console.log(items.length);
-
-      	 $(self.el).html(self.template({
-      	 	model: items
-      	 }));
+$.ajax({
+  url      : document.location.protocol + '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=?&q=' + encodeURIComponent(channelFeed),
+  dataType : 'json',
+  success  : function (data) {
+    if (data.responseData.feed && data.responseData.feed.entries) {
+      $.each(data.responseData.feed.entries, function (i, e) {
+        console.log("------------------------");
+        console.log("title      : " + e.title);
+        console.log("author     : " + e.author);
+        console.log("description: " + e.description);
+        console.log("description: " + e.enclosure);
       });
 
+
+              var items = data.responseData.feed.entries;
+
+        console.log(items.length);
+
+         $(self.el).html(self.template({
+          model: items
+         }));
+
+    }
+  }
+});
+
+
       return this;
+
+
     }
 
   });
