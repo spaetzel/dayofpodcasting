@@ -9,10 +9,11 @@ define(['jquery', 'underscore', 'backbone', 'views/home/home','views/home/submit
       'home': 'defaultAction',
       'submit': 'showSubmit',
       'links': 'showLinks',
+      '2014': 'show2014',
       '2013': 'show2013',
       '2012': 'show2012',
       '2011': 'show2011',
-      '2010': 'show2010',    
+      '2010': 'show2010',
       // Default
       '*actions': 'defaultAction'
     },
@@ -32,6 +33,12 @@ define(['jquery', 'underscore', 'backbone', 'views/home/home','views/home/submit
     showLinks: function(){
       var links = new linksView();
       links.render();
+    },
+    show2014: function(){
+      this.showYear('dayofpodcasting2014');
+
+            $('.nav li').removeClass('active');
+      $('#2014').addClass('active');
     },
     show2013: function(){
       this.showYear('dayofpodcasting2013');
